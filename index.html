@@ -239,9 +239,34 @@
     }
     .mobile-menu a:hover { color: var(--amber); }
 
+    /* Mobile-Menu Backdrop-Overlay (erscheint hinter dem Menü, vor dem Hero) */
+    .nav-backdrop {
+        display: none;
+        position: fixed;
+        top: 68px; /* direkt unter der Navbar */
+        left: 0; right: 0; bottom: 0;
+        background: rgba(0, 0, 0, 0.55);
+        z-index: 998; /* unter dem Nav (1000), über allem anderen */
+        backdrop-filter: blur(2px);
+    }
+    .nav-backdrop.open { display: block; }
+
     @media (max-width: 768px) {
         .nav-links { display: none; }
         .hamburger { display: flex; }
+
+        /* Hero: auf Mobile nicht vertikal zentrieren, sondern von oben positionieren.
+           Das verhindert, dass der Inhalt zu nah an den Nav-Bereich gedrückt wird. */
+        #hero {
+            align-items: flex-start;
+            padding-top: 68px; /* Höhe der fixen Navbar */
+        }
+
+        .hero-content {
+            padding-top: 2.5rem;   /* statt 8rem – der Hero hat schon padding-top: 68px */
+            padding-bottom: 7rem;  /* Platz für die absolute positionierte Stats-Leiste */
+            width: 100%;
+        }
     }
 
     /* ============================================================
@@ -1142,6 +1167,9 @@
     </div>
 </nav>
 
+<!-- Backdrop-Overlay: schliesst das Mobile-Menü beim Klick ausserhalb -->
+<div class="nav-backdrop" id="nav-backdrop"></div>
+
 <!-- ============================================================
      HERO
 ============================================================ -->
@@ -1637,18 +1665,36 @@
 // ── Hamburger / Mobile Menu ──────────────────────────────────
 const hamburger   = document.getElementById('hamburger');
 const mobileMenu  = document.getElementById('mobile-menu');
+const navBackdrop = document.getElementById('nav-backdrop');
+
+function openMobileMenu() {
+    hamburger.classList.add('open');
+    mobileMenu.classList.add('open');
+    navBackdrop.classList.add('open');
+    document.body.style.overflow = 'hidden'; // kein Scrollen im Hintergrund
+}
+
+function closeMobileMenu() {
+    hamburger.classList.remove('open');
+    mobileMenu.classList.remove('open');
+    navBackdrop.classList.remove('open');
+    document.body.style.overflow = '';
+}
 
 hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('open');
-    mobileMenu.classList.toggle('open');
+    if (mobileMenu.classList.contains('open')) {
+        closeMobileMenu();
+    } else {
+        openMobileMenu();
+    }
 });
 
-// Close mobile menu on link click
+// Menü schliessen: Klick auf Backdrop
+navBackdrop.addEventListener('click', closeMobileMenu);
+
+// Menü schliessen: Klick auf einen Link
 mobileMenu.querySelectorAll('a').forEach(a => {
-    a.addEventListener('click', () => {
-        hamburger.classList.remove('open');
-        mobileMenu.classList.remove('open');
-    });
+    a.addEventListener('click', closeMobileMenu);
 });
 
 // ── Nav scroll effect ────────────────────────────────────────

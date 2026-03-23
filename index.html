@@ -1,0 +1,2020 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Bienenzüchterverein Oberdiessbach und Umgebung (BZO) – Seit über 125 Jahren pflegen wir die Bienenzucht im Berner Mittelland.">
+    <title>BZO – Bienenzüchterverein Oberdiessbach</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+    /* ============================================================
+       CSS VARIABLES & RESET
+    ============================================================ */
+    :root {
+        --amber:        #F59E0B;
+        --amber-dark:   #D97706;
+        --amber-deeper: #B45309;
+        --amber-light:  #FDE68A;
+        --amber-pale:   #FFFBEB;
+        --brown:        #78350F;
+        --brown-dark:   #1C1917;
+        --stone-800:    #292524;
+        --stone-700:    #44403C;
+        --stone-500:    #78716C;
+        --stone-300:    #D6D3D1;
+        --stone-100:    #F5F5F4;
+        --cream:        #FFFBEF;
+        --white:        #FFFFFF;
+
+        --font-heading: 'Playfair Display', Georgia, serif;
+        --font-body:    'Inter', system-ui, sans-serif;
+
+        --radius-sm:  6px;
+        --radius-md:  12px;
+        --radius-lg:  20px;
+        --shadow-sm:  0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.06);
+        --shadow-md:  0 4px 16px rgba(0,0,0,.10), 0 2px 6px rgba(0,0,0,.07);
+        --shadow-lg:  0 10px 40px rgba(0,0,0,.14), 0 4px 12px rgba(0,0,0,.08);
+
+        --transition: 0.28s ease;
+        --max-width: 1100px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+        font-family: var(--font-body);
+        background: var(--cream);
+        color: var(--brown-dark);
+        line-height: 1.7;
+        overflow-x: hidden;
+    }
+
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+
+    /* ============================================================
+       TYPOGRAPHY
+    ============================================================ */
+    h1, h2, h3, h4 {
+        font-family: var(--font-heading);
+        line-height: 1.2;
+        color: var(--brown-dark);
+    }
+
+    .section-title {
+        font-size: clamp(1.9rem, 4vw, 2.8rem);
+        font-weight: 700;
+        text-align: center;
+        margin-bottom: 0.5rem;
+    }
+
+    .section-subtitle {
+        text-align: center;
+        color: var(--stone-500);
+        font-size: 1.05rem;
+        margin-bottom: 3.5rem;
+    }
+
+    .section-title span { color: var(--amber); }
+
+    /* ============================================================
+       LAYOUT
+    ============================================================ */
+    .container {
+        max-width: var(--max-width);
+        margin: 0 auto;
+        padding: 0 1.5rem;
+    }
+
+    section { padding: 5rem 0; }
+
+    .section-alt { background: var(--white); }
+    .section-dark {
+        background: var(--brown-dark);
+        color: var(--stone-300);
+    }
+    .section-dark h2, .section-dark h3 { color: var(--white); }
+
+    /* Honeycomb background pattern */
+    .honeycomb-bg {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100'%3E%3Cpath d='M28 66L0 50V16L28 0l28 16v34L28 66zM2 49l26 15 26-15V17L28 2 2 17v32z' fill='%23F59E0B' fill-opacity='0.06'/%3E%3Cpath d='M28 100L0 84V50l28-16 28 16v34L28 100zm-26-17l26 15 26-15V51L28 36 2 51v32z' fill='%23F59E0B' fill-opacity='0.06'/%3E%3C/svg%3E");
+    }
+
+    /* Fade-in animation on scroll */
+    .fade-in {
+        opacity: 0;
+        transform: translateY(28px);
+        transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .fade-in.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* ============================================================
+       NAVIGATION
+    ============================================================ */
+    nav {
+        position: fixed;
+        top: 0; left: 0; right: 0;
+        z-index: 1000;
+        background: rgba(28, 25, 23, 0.95);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid rgba(245, 158, 11, 0.2);
+        transition: box-shadow var(--transition);
+    }
+    nav.scrolled { box-shadow: var(--shadow-lg); }
+
+    .nav-inner {
+        max-width: var(--max-width);
+        margin: 0 auto;
+        padding: 0 1.5rem;
+        height: 68px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 2rem;
+    }
+
+    .nav-logo {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        flex-shrink: 0;
+    }
+
+    .logo-badge {
+        background: var(--amber);
+        color: var(--brown-dark);
+        font-family: var(--font-heading);
+        font-weight: 700;
+        font-size: 1.3rem;
+        padding: 0.2rem 0.65rem;
+        border-radius: var(--radius-sm);
+        letter-spacing: 0.04em;
+    }
+
+    .logo-text {
+        color: var(--white);
+        font-weight: 500;
+        font-size: 0.92rem;
+        line-height: 1.3;
+        display: none;
+    }
+    @media (min-width: 600px) { .logo-text { display: block; } }
+
+    .nav-links {
+        display: flex;
+        gap: 0.25rem;
+        align-items: center;
+    }
+
+    .nav-links a {
+        color: var(--stone-300);
+        font-size: 0.92rem;
+        font-weight: 500;
+        padding: 0.45rem 0.85rem;
+        border-radius: var(--radius-sm);
+        transition: color var(--transition), background var(--transition);
+    }
+    .nav-links a:hover {
+        color: var(--amber);
+        background: rgba(245, 158, 11, 0.1);
+    }
+
+    .nav-cta {
+        background: var(--amber) !important;
+        color: var(--brown-dark) !important;
+        font-weight: 600 !important;
+        padding: 0.45rem 1.1rem !important;
+    }
+    .nav-cta:hover {
+        background: var(--amber-dark) !important;
+    }
+
+    .hamburger {
+        display: none;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0.4rem;
+        flex-direction: column;
+        gap: 5px;
+    }
+    .hamburger span {
+        display: block;
+        width: 24px;
+        height: 2px;
+        background: var(--white);
+        border-radius: 2px;
+        transition: var(--transition);
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .mobile-menu {
+        display: none;
+        flex-direction: column;
+        background: var(--brown-dark);
+        border-top: 1px solid rgba(245,158,11,0.15);
+        padding: 1rem 1.5rem;
+        gap: 0.25rem;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+        color: var(--stone-300);
+        font-size: 1rem;
+        font-weight: 500;
+        padding: 0.65rem 0;
+        border-bottom: 1px solid rgba(255,255,255,0.06);
+        transition: color var(--transition);
+    }
+    .mobile-menu a:hover { color: var(--amber); }
+
+    @media (max-width: 768px) {
+        .nav-links { display: none; }
+        .hamburger { display: flex; }
+    }
+
+    /* ============================================================
+       HERO
+    ============================================================ */
+    #hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        padding: 0;
+        position: relative;
+        overflow: hidden;
+        background:
+            linear-gradient(155deg, rgba(28,25,23,0.82) 0%, rgba(120,53,15,0.65) 100%),
+            url('https://www.bienen-oberdiessbach.ch/uploads/images/Gallery/Lehrbienenstand//DSC00060.JPG') center / cover no-repeat;
+    }
+
+    /* Animated hex overlay */
+    #hero::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100'%3E%3Cpath d='M28 66L0 50V16L28 0l28 16v34L28 66zM2 49l26 15 26-15V17L28 2 2 17v32z' fill='%23F59E0B' fill-opacity='0.04'/%3E%3Cpath d='M28 100L0 84V50l28-16 28 16v34L28 100zm-26-17l26 15 26-15V51L28 36 2 51v32z' fill='%23F59E0B' fill-opacity='0.04'/%3E%3C/svg%3E");
+        pointer-events: none;
+    }
+
+    .hero-content {
+        position: relative;
+        z-index: 1;
+        max-width: var(--max-width);
+        margin: 0 auto;
+        padding: 8rem 1.5rem 4rem;
+        max-width: 720px;
+    }
+
+    .hero-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: rgba(245, 158, 11, 0.15);
+        border: 1px solid rgba(245, 158, 11, 0.35);
+        color: var(--amber-light);
+        font-size: 0.85rem;
+        font-weight: 500;
+        padding: 0.35rem 0.9rem;
+        border-radius: 999px;
+        margin-bottom: 1.5rem;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+    }
+
+    #hero h1 {
+        font-size: clamp(2.4rem, 6vw, 4.2rem);
+        font-weight: 700;
+        color: var(--white);
+        line-height: 1.1;
+        margin-bottom: 1.25rem;
+    }
+
+    #hero h1 em {
+        font-style: italic;
+        color: var(--amber);
+    }
+
+    .hero-sub {
+        font-size: clamp(1rem, 2.2vw, 1.2rem);
+        color: rgba(255,255,255,0.78);
+        margin-bottom: 2.5rem;
+        font-weight: 300;
+        max-width: 520px;
+    }
+
+    .hero-buttons {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+
+    .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        padding: 0.8rem 1.75rem;
+        border-radius: var(--radius-sm);
+        font-weight: 600;
+        font-size: 0.95rem;
+        cursor: pointer;
+        transition: all var(--transition);
+        border: 2px solid transparent;
+    }
+
+    .btn-primary {
+        background: var(--amber);
+        color: var(--brown-dark);
+    }
+    .btn-primary:hover {
+        background: var(--amber-dark);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(245,158,11,0.4);
+    }
+
+    .btn-outline {
+        background: transparent;
+        color: var(--white);
+        border-color: rgba(255,255,255,0.4);
+    }
+    .btn-outline:hover {
+        border-color: var(--amber);
+        color: var(--amber);
+        background: rgba(245,158,11,0.08);
+    }
+
+    .hero-scroll {
+        position: absolute;
+        bottom: 2.5rem;
+        left: 50%;
+        transform: translateX(-50%);
+        color: rgba(255,255,255,0.5);
+        font-size: 0.8rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+        animation: bounce 2s infinite;
+    }
+    .hero-scroll svg { opacity: 0.6; }
+    @keyframes bounce {
+        0%,100% { transform: translateX(-50%) translateY(0); }
+        50%      { transform: translateX(-50%) translateY(8px); }
+    }
+
+    /* Hero stats bar */
+    .hero-stats {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(28,25,23,0.7);
+        backdrop-filter: blur(8px);
+        border-top: 1px solid rgba(245,158,11,0.2);
+    }
+    .hero-stats-inner {
+        max-width: var(--max-width);
+        margin: 0 auto;
+        padding: 1.25rem 1.5rem;
+        display: flex;
+        justify-content: center;
+        gap: 3rem;
+        flex-wrap: wrap;
+    }
+    .hero-stat {
+        text-align: center;
+    }
+    .hero-stat-num {
+        font-family: var(--font-heading);
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--amber);
+        line-height: 1;
+    }
+    .hero-stat-label {
+        font-size: 0.8rem;
+        color: rgba(255,255,255,0.55);
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        margin-top: 0.2rem;
+    }
+
+    /* ============================================================
+       AKTUELL
+    ============================================================ */
+    #aktuell { background: var(--white); }
+
+    .news-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .news-card {
+        background: var(--cream);
+        border: 1px solid var(--stone-100);
+        border-radius: var(--radius-md);
+        padding: 1.75rem;
+        transition: box-shadow var(--transition), transform var(--transition);
+        position: relative;
+        overflow: hidden;
+    }
+    .news-card::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0;
+        width: 4px;
+        height: 100%;
+        background: var(--amber);
+        border-radius: 0 4px 4px 0;
+    }
+    .news-card:hover {
+        box-shadow: var(--shadow-md);
+        transform: translateY(-3px);
+    }
+
+    .news-tag {
+        display: inline-block;
+        background: var(--amber-pale);
+        color: var(--amber-deeper);
+        font-size: 0.75rem;
+        font-weight: 600;
+        padding: 0.2rem 0.65rem;
+        border-radius: 999px;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 0.75rem;
+    }
+
+    .news-card h3 {
+        font-family: var(--font-heading);
+        font-size: 1.1rem;
+        margin-bottom: 0.6rem;
+        color: var(--brown-dark);
+    }
+
+    .news-card p {
+        color: var(--stone-500);
+        font-size: 0.92rem;
+        line-height: 1.6;
+        margin-bottom: 0.75rem;
+    }
+
+    .news-date {
+        font-size: 0.82rem;
+        color: var(--stone-500);
+        display: flex;
+        align-items: center;
+        gap: 0.35rem;
+    }
+
+    .news-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.3rem;
+        color: var(--amber-deeper);
+        font-size: 0.88rem;
+        font-weight: 600;
+        margin-top: 0.75rem;
+        transition: gap var(--transition);
+    }
+    .news-link:hover { gap: 0.6rem; }
+
+    /* ============================================================
+       ÜBER UNS
+    ============================================================ */
+    #ueber-uns { background: var(--cream); }
+
+    .about-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: center;
+    }
+    @media (max-width: 760px) { .about-grid { grid-template-columns: 1fr; gap: 2rem; } }
+
+    .about-text p {
+        color: var(--stone-700);
+        margin-bottom: 1rem;
+        font-size: 1rem;
+        line-height: 1.8;
+    }
+
+    .about-image-wrap {
+        position: relative;
+    }
+    .about-image-wrap img {
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-lg);
+        width: 100%;
+        aspect-ratio: 4/3;
+        object-fit: cover;
+    }
+    .about-image-badge {
+        position: absolute;
+        bottom: -1.2rem;
+        right: -1.2rem;
+        background: var(--amber);
+        color: var(--brown-dark);
+        font-family: var(--font-heading);
+        font-size: 0.9rem;
+        font-weight: 700;
+        padding: 1rem 1.25rem;
+        border-radius: var(--radius-md);
+        box-shadow: var(--shadow-md);
+        line-height: 1.2;
+        text-align: center;
+    }
+    .about-image-badge strong { font-size: 1.6rem; display: block; }
+
+    /* Gemeinden tags */
+    .tag-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-top: 1.25rem;
+    }
+    .tag {
+        background: var(--white);
+        border: 1px solid var(--stone-300);
+        color: var(--stone-700);
+        font-size: 0.82rem;
+        padding: 0.3rem 0.75rem;
+        border-radius: 999px;
+    }
+
+    /* ============================================================
+       VORSTAND
+    ============================================================ */
+    #vorstand { background: var(--white); }
+
+    .team-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 1.25rem;
+    }
+
+    .team-card {
+        background: var(--cream);
+        border: 1px solid var(--stone-100);
+        border-radius: var(--radius-md);
+        padding: 1.5rem 1.25rem;
+        text-align: center;
+        transition: box-shadow var(--transition), transform var(--transition);
+    }
+    .team-card:hover {
+        box-shadow: var(--shadow-md);
+        transform: translateY(-2px);
+    }
+
+    .team-avatar {
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        background: var(--amber-pale);
+        border: 2px solid var(--amber);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 0.9rem;
+        font-size: 1.4rem;
+    }
+
+    .team-card h4 {
+        font-family: var(--font-heading);
+        font-size: 1rem;
+        margin-bottom: 0.3rem;
+        color: var(--brown-dark);
+    }
+
+    .team-role {
+        font-size: 0.8rem;
+        color: var(--amber-deeper);
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+    }
+
+    /* ============================================================
+       GESCHICHTE / TIMELINE
+    ============================================================ */
+    #geschichte { background: var(--brown-dark); }
+    #geschichte .section-title { color: var(--white); }
+    #geschichte .section-title span { color: var(--amber); }
+    #geschichte .section-subtitle { color: var(--stone-500); }
+
+    .timeline {
+        position: relative;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .timeline::before {
+        content: '';
+        position: absolute;
+        left: 50%;
+        top: 0; bottom: 0;
+        width: 2px;
+        background: linear-gradient(to bottom, transparent, var(--amber), var(--amber-dark), transparent);
+        transform: translateX(-50%);
+    }
+    @media (max-width: 600px) {
+        .timeline::before { left: 20px; }
+    }
+
+    .timeline-item {
+        display: flex;
+        justify-content: flex-end;
+        padding-right: calc(50% + 2rem);
+        position: relative;
+        margin-bottom: 2.5rem;
+    }
+    .timeline-item:nth-child(even) {
+        justify-content: flex-start;
+        padding-right: 0;
+        padding-left: calc(50% + 2rem);
+    }
+    @media (max-width: 600px) {
+        .timeline-item,
+        .timeline-item:nth-child(even) {
+            justify-content: flex-start;
+            padding-left: 3.5rem;
+            padding-right: 0;
+        }
+    }
+
+    .timeline-dot {
+        position: absolute;
+        left: 50%;
+        top: 0.7rem;
+        width: 14px;
+        height: 14px;
+        background: var(--amber);
+        border: 3px solid var(--brown-dark);
+        border-radius: 50%;
+        transform: translateX(-50%);
+        box-shadow: 0 0 0 3px var(--amber-dark);
+        z-index: 1;
+    }
+    @media (max-width: 600px) {
+        .timeline-dot { left: 20px; }
+    }
+
+    .timeline-card {
+        background: rgba(255,255,255,0.05);
+        border: 1px solid rgba(245,158,11,0.2);
+        border-radius: var(--radius-md);
+        padding: 1.1rem 1.3rem;
+        max-width: 340px;
+        transition: background var(--transition), border-color var(--transition);
+    }
+    .timeline-card:hover {
+        background: rgba(245,158,11,0.07);
+        border-color: rgba(245,158,11,0.4);
+    }
+
+    .timeline-year {
+        font-family: var(--font-heading);
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: var(--amber);
+        margin-bottom: 0.3rem;
+    }
+
+    .timeline-text {
+        color: var(--stone-300);
+        font-size: 0.9rem;
+        line-height: 1.6;
+    }
+
+    /* ============================================================
+       AKTIVITÄTEN
+    ============================================================ */
+    #aktivitaeten { background: var(--cream); }
+
+    .activity-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.75rem;
+    }
+
+    .activity-card {
+        background: var(--white);
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        box-shadow: var(--shadow-sm);
+        transition: box-shadow var(--transition), transform var(--transition);
+    }
+    .activity-card:hover {
+        box-shadow: var(--shadow-lg);
+        transform: translateY(-4px);
+    }
+
+    .activity-icon-wrap {
+        background: linear-gradient(135deg, var(--amber) 0%, var(--amber-dark) 100%);
+        padding: 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 3rem;
+    }
+
+    .activity-body {
+        padding: 1.75rem;
+    }
+
+    .activity-body h3 {
+        font-family: var(--font-heading);
+        font-size: 1.2rem;
+        margin-bottom: 0.6rem;
+    }
+
+    .activity-body p {
+        color: var(--stone-500);
+        font-size: 0.93rem;
+        line-height: 1.65;
+        margin-bottom: 1rem;
+    }
+
+    .contact-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        background: var(--amber-pale);
+        color: var(--amber-deeper);
+        font-size: 0.83rem;
+        font-weight: 500;
+        padding: 0.35rem 0.8rem;
+        border-radius: 999px;
+    }
+
+    /* ============================================================
+       GALERIE
+    ============================================================ */
+    #galerie { background: var(--white); }
+
+    .gallery-note {
+        text-align: center;
+        background: var(--amber-pale);
+        border: 1px solid var(--amber-light);
+        border-radius: var(--radius-md);
+        padding: 0.9rem 1.5rem;
+        color: var(--brown);
+        font-size: 0.88rem;
+        margin-bottom: 2.5rem;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .gallery-note strong { font-weight: 600; }
+
+    .gallery-filters {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-bottom: 2.5rem;
+    }
+
+    .filter-btn {
+        background: var(--stone-100);
+        color: var(--stone-700);
+        border: 1.5px solid transparent;
+        border-radius: 999px;
+        padding: 0.45rem 1.1rem;
+        font-size: 0.88rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all var(--transition);
+        font-family: var(--font-body);
+    }
+    .filter-btn:hover, .filter-btn.active {
+        background: var(--amber);
+        color: var(--brown-dark);
+        border-color: var(--amber);
+    }
+
+    .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 1rem;
+    }
+
+    .gallery-item {
+        position: relative;
+        aspect-ratio: 1;
+        border-radius: var(--radius-md);
+        overflow: hidden;
+        cursor: pointer;
+        background: var(--stone-100);
+    }
+
+    .gallery-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+    }
+
+    .gallery-item:hover img { transform: scale(1.07); }
+
+    .gallery-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to top, rgba(28,25,23,0.75) 0%, transparent 60%);
+        opacity: 0;
+        transition: opacity var(--transition);
+        display: flex;
+        align-items: flex-end;
+        padding: 1rem;
+    }
+    .gallery-item:hover .gallery-overlay { opacity: 1; }
+
+    .gallery-overlay-text {
+        color: var(--white);
+        font-size: 0.85rem;
+        font-weight: 500;
+    }
+
+    .gallery-expand {
+        position: absolute;
+        top: 0.75rem; right: 0.75rem;
+        width: 32px; height: 32px;
+        background: rgba(255,255,255,0.9);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity var(--transition);
+        color: var(--brown-dark);
+    }
+    .gallery-item:hover .gallery-expand { opacity: 1; }
+
+    .gallery-item.hidden { display: none; }
+
+    /* ============================================================
+       LIGHTBOX
+    ============================================================ */
+    #lightbox {
+        display: none;
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        background: rgba(10,8,6,0.92);
+        backdrop-filter: blur(6px);
+        align-items: center;
+        justify-content: center;
+        padding: 1.5rem;
+    }
+    #lightbox.open { display: flex; }
+
+    .lightbox-close {
+        position: absolute;
+        top: 1.25rem; right: 1.25rem;
+        width: 42px; height: 42px;
+        background: rgba(255,255,255,0.1);
+        border: none;
+        border-radius: 50%;
+        color: var(--white);
+        font-size: 1.3rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background var(--transition);
+    }
+    .lightbox-close:hover { background: rgba(255,255,255,0.2); }
+
+    .lightbox-nav {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 46px; height: 46px;
+        background: rgba(255,255,255,0.1);
+        border: none;
+        border-radius: 50%;
+        color: var(--white);
+        font-size: 1.4rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background var(--transition);
+    }
+    .lightbox-nav:hover { background: rgba(245,158,11,0.4); }
+    .lightbox-prev { left: 1rem; }
+    .lightbox-next { right: 1rem; }
+
+    #lightbox img {
+        max-width: min(90vw, 900px);
+        max-height: 80vh;
+        border-radius: var(--radius-md);
+        box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+        object-fit: contain;
+    }
+
+    .lightbox-caption {
+        position: absolute;
+        bottom: 1.5rem;
+        left: 50%;
+        transform: translateX(-50%);
+        color: rgba(255,255,255,0.6);
+        font-size: 0.85rem;
+        white-space: nowrap;
+    }
+
+    /* ============================================================
+       KONTAKT
+    ============================================================ */
+    #kontakt {
+        background: var(--brown-dark);
+        position: relative;
+        overflow: hidden;
+    }
+    #kontakt::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100'%3E%3Cpath d='M28 66L0 50V16L28 0l28 16v34L28 66zM2 49l26 15 26-15V17L28 2 2 17v32z' fill='%23F59E0B' fill-opacity='0.04'/%3E%3Cpath d='M28 100L0 84V50l28-16 28 16v34L28 100zm-26-17l26 15 26-15V51L28 36 2 51v32z' fill='%23F59E0B' fill-opacity='0.04'/%3E%3C/svg%3E");
+        pointer-events: none;
+    }
+
+    .kontakt-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        position: relative;
+    }
+    @media (max-width: 700px) { .kontakt-grid { grid-template-columns: 1fr; gap: 2.5rem; } }
+
+    .kontakt-info h3 {
+        font-family: var(--font-heading);
+        font-size: 1.5rem;
+        color: var(--white);
+        margin-bottom: 0.5rem;
+    }
+    .kontakt-info > p {
+        color: var(--stone-500);
+        margin-bottom: 2rem;
+        font-size: 0.95rem;
+    }
+
+    .contact-items { display: flex; flex-direction: column; gap: 1.25rem; }
+
+    .contact-item {
+        display: flex;
+        gap: 1rem;
+        align-items: flex-start;
+    }
+
+    .contact-icon {
+        width: 42px; height: 42px;
+        border-radius: var(--radius-sm);
+        background: rgba(245,158,11,0.12);
+        border: 1px solid rgba(245,158,11,0.25);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.1rem;
+        flex-shrink: 0;
+    }
+
+    .contact-label {
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--stone-500);
+        margin-bottom: 0.2rem;
+    }
+    .contact-value {
+        color: var(--stone-300);
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+    .contact-value a { color: var(--amber); transition: color var(--transition); }
+    .contact-value a:hover { color: var(--amber-light); }
+
+    .kontakt-bank {
+        background: rgba(255,255,255,0.04);
+        border: 1px solid rgba(245,158,11,0.15);
+        border-radius: var(--radius-md);
+        padding: 1.75rem;
+    }
+    .kontakt-bank h3 {
+        font-family: var(--font-heading);
+        color: var(--white);
+        font-size: 1.2rem;
+        margin-bottom: 1.25rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .bank-row {
+        display: flex;
+        justify-content: space-between;
+        padding: 0.7rem 0;
+        border-bottom: 1px solid rgba(255,255,255,0.06);
+        gap: 1rem;
+    }
+    .bank-row:last-child { border-bottom: none; }
+
+    .bank-label {
+        color: var(--stone-500);
+        font-size: 0.85rem;
+    }
+    .bank-value {
+        color: var(--stone-300);
+        font-size: 0.88rem;
+        font-family: 'Courier New', monospace;
+        text-align: right;
+    }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    footer {
+        background: #0F0D0C;
+        border-top: 1px solid rgba(245,158,11,0.1);
+        padding: 2rem 1.5rem;
+        text-align: center;
+        color: var(--stone-500);
+        font-size: 0.85rem;
+    }
+    footer .footer-inner {
+        max-width: var(--max-width);
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.75rem;
+    }
+    .footer-logo {
+        font-family: var(--font-heading);
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--amber);
+    }
+    footer p { line-height: 1.8; }
+    footer a { color: var(--amber); transition: color var(--transition); }
+    footer a:hover { color: var(--amber-light); }
+
+    /* ============================================================
+       BACK TO TOP
+    ============================================================ */
+    #back-top {
+        position: fixed;
+        bottom: 2rem;
+        right: 2rem;
+        width: 44px; height: 44px;
+        background: var(--amber);
+        color: var(--brown-dark);
+        border: none;
+        border-radius: 50%;
+        font-size: 1.2rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: var(--shadow-md);
+        opacity: 0;
+        transform: translateY(12px);
+        transition: all var(--transition);
+        z-index: 900;
+    }
+    #back-top.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    #back-top:hover { background: var(--amber-dark); }
+
+    /* ============================================================
+       RESPONSIVE TWEAKS
+    ============================================================ */
+    @media (max-width: 480px) {
+        section { padding: 3.5rem 0; }
+        .hero-stats-inner { gap: 1.5rem; }
+        .hero-stat-num { font-size: 1.4rem; }
+    }
+    </style>
+</head>
+
+<body>
+
+<!-- ============================================================
+     NAVIGATION
+============================================================ -->
+<nav id="main-nav">
+    <div class="nav-inner">
+        <a href="#hero" class="nav-logo">
+            <span class="logo-badge">BZO</span>
+            <span class="logo-text">Bienenzüchterverein<br>Oberdiessbach</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="#aktuell">Aktuell</a></li>
+            <li><a href="#ueber-uns">Über uns</a></li>
+            <li><a href="#geschichte">Geschichte</a></li>
+            <li><a href="#aktivitaeten">Aktivitäten</a></li>
+            <li><a href="#galerie">Galerie</a></li>
+            <li><a href="#kontakt" class="nav-cta">Kontakt</a></li>
+        </ul>
+        <button class="hamburger" id="hamburger" aria-label="Menü öffnen">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+    <div class="mobile-menu" id="mobile-menu">
+        <a href="#aktuell">Aktuell</a>
+        <a href="#ueber-uns">Über uns</a>
+        <a href="#geschichte">Geschichte</a>
+        <a href="#aktivitaeten">Aktivitäten</a>
+        <a href="#galerie">Galerie</a>
+        <a href="#kontakt">Kontakt</a>
+    </div>
+</nav>
+
+<!-- ============================================================
+     HERO
+============================================================ -->
+<section id="hero">
+    <div class="hero-content">
+        <div class="hero-badge">🐝 Seit 1888 in Oberdiessbach</div>
+        <h1>Bienen&shy;züchter&shy;verein<br><em>Oberdiessbach</em></h1>
+        <p class="hero-sub">
+            Wir fördern die Bienenzucht und die Interessen der Imkerinnen und Imker
+            im Berner Mittelland – mit Leidenschaft, seit über 135 Jahren.
+        </p>
+        <div class="hero-buttons">
+            <a href="#ueber-uns" class="btn btn-primary">Über uns ↓</a>
+            <a href="#aktivitaeten" class="btn btn-outline">Aktivitäten &amp; Kurse</a>
+        </div>
+    </div>
+
+    <div class="hero-stats">
+        <div class="hero-stats-inner">
+            <div class="hero-stat">
+                <div class="hero-stat-num">135+</div>
+                <div class="hero-stat-label">Jahre</div>
+            </div>
+            <div class="hero-stat">
+                <div class="hero-stat-num">~100</div>
+                <div class="hero-stat-label">Mitglieder</div>
+            </div>
+            <div class="hero-stat">
+                <div class="hero-stat-num">8</div>
+                <div class="hero-stat-label">Gemeinden</div>
+            </div>
+            <div class="hero-stat">
+                <div class="hero-stat-num">1888</div>
+                <div class="hero-stat-label">Gegründet</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     AKTUELL
+============================================================ -->
+<section id="aktuell" class="section-alt">
+    <div class="container">
+        <h2 class="section-title fade-in">Aktuell</h2>
+        <p class="section-subtitle fade-in">Neuigkeiten aus dem Verein</p>
+
+        <div class="news-grid">
+
+            <div class="news-card fade-in">
+                <span class="news-tag">📅 Anlass</span>
+                <h3>Hauptversammlung 2026</h3>
+                <p>Der BZO lädt herzlich zur Hauptversammlung 2026 ein. Alle Mitglieder sind willkommen.</p>
+                <div class="news-date">📍 Mittwoch, 18. März 2026, 20:00 Uhr</div>
+                <div class="news-date" style="margin-top:0.3rem">🏠 Restaurant Linde, Linden b. Oberdiessbach</div>
+            </div>
+
+            <div class="news-card fade-in">
+                <span class="news-tag" style="background:#FEF2F2;color:#991B1B">⚠️ Warnung</span>
+                <h3>Asiatische Hornisse</h3>
+                <p>Die Asiatische Hornisse breitet sich aus. Melde Sichtungen und hilf mit, die Ausbreitung zu verfolgen.</p>
+                <a href="https://www.bienen-oberdiessbach.ch/uploads/bienen_oberdiessbach/VBBV_Infoblatt_Asiatische_Hornisse.pdf"
+                   target="_blank" class="news-link">Infoblatt herunterladen →</a>
+            </div>
+
+            <div class="news-card fade-in">
+                <span class="news-tag">📋 Programm</span>
+                <h3>Jahresprogramm 2026</h3>
+                <p>Das Jahresprogramm 2026 mit interessanten Vorträgen und Aktivitäten ist in Erarbeitung und wird bald publiziert.</p>
+            </div>
+
+            <div class="news-card fade-in">
+                <span class="news-tag">🔧 Vermietung</span>
+                <h3>Gerätevermietung</h3>
+                <p>Mitglieder können Wachs-Entkeimer, Wärmeschrank und Rührwerk kostenlos ausleihen. Nichtmitglieder: CHF 20.–</p>
+                <a href="mailto:rosmarie.stucki@gmx.ch" class="news-link">Rosmarie Stucki kontaktieren →</a>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     ÜBER UNS
+============================================================ -->
+<section id="ueber-uns">
+    <div class="container">
+        <h2 class="section-title fade-in">Über <span>uns</span></h2>
+        <p class="section-subtitle fade-in">Der Bienenzüchterverein Oberdiessbach und Umgebung</p>
+
+        <div class="about-grid">
+            <div class="about-text fade-in">
+                <p>
+                    Seit über 135 Jahren bezweckt der Verein die <strong>Förderung der Bienenzucht</strong>
+                    und die Wahrnehmung der materiellen und ideellen Interessen der Bienenzüchter
+                    im Vereinsgebiet.
+                </p>
+                <p>
+                    Das Vereinsgebiet umfasst die Gemeinden Oberdiessbach mit Aeschlen und Bleiken
+                    sowie Brenzikofen, Buchholterberg, Herbligen, Linden und Oppligen.
+                </p>
+                <p>
+                    Selbstverständlich sind auch Imkerinnen und Imker aus weiteren Gebieten
+                    herzlich willkommen.
+                </p>
+                <div class="tag-list">
+                    <span class="tag">Oberdiessbach</span>
+                    <span class="tag">Aeschlen & Bleiken</span>
+                    <span class="tag">Brenzikofen</span>
+                    <span class="tag">Buchholterberg</span>
+                    <span class="tag">Herbligen</span>
+                    <span class="tag">Linden</span>
+                    <span class="tag">Oppligen</span>
+                </div>
+            </div>
+
+            <div class="about-image-wrap fade-in">
+                <!--
+                    TIPP: Ersetzen Sie die src-URL durch Ihr eigenes Bild,
+                    z.B. src="images/bienenzuechter.jpg"
+                -->
+                <img src="https://www.bienen-oberdiessbach.ch/uploads/images/Gallery/Lehrbienenstand//DSC00057.JPG"
+                     alt="Imker am Lehrbienenstand Oberdiessbach"
+                     loading="lazy">
+                <div class="about-image-badge">
+                    <strong>1888</strong>
+                    Gegründet
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     VORSTAND
+============================================================ -->
+<section id="vorstand" class="section-alt">
+    <div class="container">
+        <h2 class="section-title fade-in">Der <span>Vorstand</span></h2>
+        <p class="section-subtitle fade-in">Die Menschen hinter dem BZO</p>
+
+        <div class="team-grid">
+            <div class="team-card fade-in">
+                <div class="team-avatar">👑</div>
+                <h4>Walter Lüthi</h4>
+                <div class="team-role">Präsident</div>
+            </div>
+            <div class="team-card fade-in">
+                <div class="team-avatar">⭐</div>
+                <h4>Ursula Lädrach</h4>
+                <div class="team-role">Vizepräsidentin</div>
+            </div>
+            <div class="team-card fade-in">
+                <div class="team-avatar">📝</div>
+                <h4>Ursula Bühler</h4>
+                <div class="team-role">Sekretärin</div>
+            </div>
+            <div class="team-card fade-in">
+                <div class="team-avatar">💰</div>
+                <h4>Roland Stucki</h4>
+                <div class="team-role">Kassier</div>
+            </div>
+            <div class="team-card fade-in">
+                <div class="team-avatar">🔍</div>
+                <h4>Sascha Fankhauser</h4>
+                <div class="team-role">Bieneninspektor</div>
+            </div>
+            <div class="team-card fade-in">
+                <div class="team-avatar">🎓</div>
+                <h4>Rosmarie Stucki-Gasser</h4>
+                <div class="team-role">Betriebsberaterin & Kursleiterin</div>
+            </div>
+            <div class="team-card fade-in">
+                <div class="team-avatar">🏅</div>
+                <h4>Christoph Pauli</h4>
+                <div class="team-role">Betriebsprüfer Siegelimker</div>
+            </div>
+            <div class="team-card fade-in">
+                <div class="team-avatar">🌸</div>
+                <h4>Beatrice Thierstein</h4>
+                <div class="team-role">Beisitzerin</div>
+            </div>
+            <div class="team-card fade-in">
+                <div class="team-avatar">🌿</div>
+                <h4>Herbert Lüthi</h4>
+                <div class="team-role">Beisitzer</div>
+            </div>
+            <div class="team-card fade-in">
+                <div class="team-avatar">💻</div>
+                <h4>Eliane Rupp</h4>
+                <div class="team-role">Verantwortliche Webseite</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     GESCHICHTE
+============================================================ -->
+<section id="geschichte">
+    <div class="container">
+        <h2 class="section-title fade-in">Unsere <span>Geschichte</span></h2>
+        <p class="section-subtitle fade-in">135 Jahre Leidenschaft für die Biene</p>
+
+        <div class="timeline">
+
+            <div class="timeline-item fade-in">
+                <div class="timeline-dot"></div>
+                <div class="timeline-card">
+                    <div class="timeline-year">1867</div>
+                    <div class="timeline-text">Erste Gründung des Vereins. Schriftliche Unterlagen fehlen aus dieser Zeit; die Auflösung erfolgte sehr bald.</div>
+                </div>
+            </div>
+
+            <div class="timeline-item fade-in">
+                <div class="timeline-dot"></div>
+                <div class="timeline-card">
+                    <div class="timeline-year">1888</div>
+                    <div class="timeline-text">Am 6. Mai – offizielle Gründung des Bienenzüchtervereins Oberdiessbach und Umgebung. Beginn der eigentlichen Vereinsgeschichte.</div>
+                </div>
+            </div>
+
+            <div class="timeline-item fade-in">
+                <div class="timeline-dot"></div>
+                <div class="timeline-card">
+                    <div class="timeline-year">1913</div>
+                    <div class="timeline-text">Anschluss an die Belegstation im «Zelgli» (Kiesen) des Vereins «Oberes Aaretal».</div>
+                </div>
+            </div>
+
+            <div class="timeline-item fade-in">
+                <div class="timeline-dot"></div>
+                <div class="timeline-card">
+                    <div class="timeline-year">1920</div>
+                    <div class="timeline-text">Eröffnung der vereinseigenen Belegstation Aeschlenalp. Bereits im ersten Jahr wurden 174 Königinnen aufgeführt.</div>
+                </div>
+            </div>
+
+            <div class="timeline-item fade-in">
+                <div class="timeline-dot"></div>
+                <div class="timeline-card">
+                    <div class="timeline-year">1927</div>
+                    <div class="timeline-text">Die erste Imkerin wird in den Verein aufgenommen – ein wichtiger Meilenstein für die Öffnung des Vereins.</div>
+                </div>
+            </div>
+
+            <div class="timeline-item fade-in">
+                <div class="timeline-dot"></div>
+                <div class="timeline-card">
+                    <div class="timeline-year">1938</div>
+                    <div class="timeline-text">Feier des 50-jährigen Vereinsjubiläums im Gasthof Löwen, Oberdiessbach, am 24. Juli.</div>
+                </div>
+            </div>
+
+            <div class="timeline-item fade-in">
+                <div class="timeline-dot"></div>
+                <div class="timeline-card">
+                    <div class="timeline-year">1946</div>
+                    <div class="timeline-text">Rekordjahr: Die Belegstation Aeschlenalp führt 277 Königinnen auf.</div>
+                </div>
+            </div>
+
+            <div class="timeline-item fade-in">
+                <div class="timeline-dot"></div>
+                <div class="timeline-card">
+                    <div class="timeline-year">1974</div>
+                    <div class="timeline-text">Der Traum eines Lehrbienenstandes wird auf der Haube, Oberdiessbach, Wirklichkeit.</div>
+                </div>
+            </div>
+
+            <div class="timeline-item fade-in">
+                <div class="timeline-dot"></div>
+                <div class="timeline-card">
+                    <div class="timeline-year">1985</div>
+                    <div class="timeline-text">Die Varroa-Milbe erreicht Europa – ein einschneidendes Ereignis für die Imkerei, das bis heute andauert.</div>
+                </div>
+            </div>
+
+            <div class="timeline-item fade-in">
+                <div class="timeline-dot"></div>
+                <div class="timeline-card">
+                    <div class="timeline-year">1988</div>
+                    <div class="timeline-text">100-jähriges Jubiläum mit 174 Mitgliedern. Ein Meilenstein in der Vereinsgeschichte.</div>
+                </div>
+            </div>
+
+            <div class="timeline-item fade-in">
+                <div class="timeline-dot"></div>
+                <div class="timeline-card">
+                    <div class="timeline-year">1996</div>
+                    <div class="timeline-text">Feierliche Einweihung des neuen Lehrbienenstands am Diessbachgraben.</div>
+                </div>
+            </div>
+
+            <div class="timeline-item fade-in">
+                <div class="timeline-dot"></div>
+                <div class="timeline-card">
+                    <div class="timeline-year">2013</div>
+                    <div class="timeline-text">125-jähriges Vereinsjubiläum. Der Verein umfasst rund 100 aktive Bienenzüchterinnen und -züchter.</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     AKTIVITÄTEN
+============================================================ -->
+<section id="aktivitaeten">
+    <div class="container">
+        <h2 class="section-title fade-in">Aktivitäten &amp; <span>Kurse</span></h2>
+        <p class="section-subtitle fade-in">Was der BZO das ganze Jahr über bietet</p>
+
+        <div class="activity-grid">
+
+            <div class="activity-card fade-in">
+                <div class="activity-icon-wrap">📅</div>
+                <div class="activity-body">
+                    <h3>Jahresprogramm</h3>
+                    <p>
+                        Der BZO bietet über das ganze Jahr hinweg interessante und lehrreiche
+                        Vorträge, Standbesuche und Vereinsanlässe. Das Programm 2026 wird
+                        bald publiziert.
+                    </p>
+                    <span class="contact-chip">🗓 Nächster Anlass: HV 18.03.2026</span>
+                </div>
+            </div>
+
+            <div class="activity-card fade-in">
+                <div class="activity-icon-wrap">🎓</div>
+                <div class="activity-body">
+                    <h3>Grundkurs Imkerei</h3>
+                    <p>
+                        Jährlich werden Grundkurse für das Imkerhandwerk durchgeführt.
+                        Alle Informationen und Anmeldung unter
+                        <a href="https://imkerhandwerk.ch/" target="_blank" style="color:var(--amber-deeper)">imkerhandwerk.ch</a>.
+                    </p>
+                    <a href="mailto:rosmarie.stucki@gmx.ch" class="contact-chip">
+                        ✉️ rosmarie.stucki@gmx.ch
+                    </a>
+                </div>
+            </div>
+
+            <div class="activity-card fade-in">
+                <div class="activity-icon-wrap">🔧</div>
+                <div class="activity-body">
+                    <h3>Gerätevermietung</h3>
+                    <p>
+                        Mitglieder können Wachs-Entkeimer, Wärmeschrank und Rührwerk
+                        zur Herstellung von gerührtem Honig kostenlos ausleihen.
+                        Nichtmitglieder: CHF 20.–
+                    </p>
+                    <a href="tel:0793206085" class="contact-chip">📞 079 320 60 85</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     GALERIE
+============================================================ -->
+<section id="galerie" class="section-alt">
+    <div class="container">
+        <h2 class="section-title fade-in">Galerie</h2>
+        <p class="section-subtitle fade-in">Einblicke in die Welt der Bienen und des Vereins</p>
+
+        <!--
+        ╔══════════════════════════════════════════════════════════╗
+        ║  EIGENE BILDER HINZUFÜGEN                                ║
+        ║  Ersetzen Sie die src-Attribute der <img> Tags           ║
+        ║  mit Ihren eigenen Bildpfaden, z.B.:                     ║
+        ║  src="images/galerie/bienen/mein-bild.jpg"              ║
+        ║                                                          ║
+        ║  Ordnerstruktur empfohlen:                               ║
+        ║  images/galerie/bienen/                                  ║
+        ║  images/galerie/anlaesse/                                ║
+        ║  images/galerie/lehrbienenstand/                         ║
+        ║  images/galerie/bienenkurs/                              ║
+        ╚══════════════════════════════════════════════════════════╝
+        -->
+
+        <div class="gallery-note fade-in">
+            💡 <strong>Ihre Bilder:</strong> Ersetzen Sie die Beispielbilder einfach durch eigene Fotos –
+            die Bildpfade stehen als Kommentare direkt im Quellcode.
+        </div>
+
+        <div class="gallery-filters fade-in">
+            <button class="filter-btn active" data-filter="all">Alle</button>
+            <button class="filter-btn" data-filter="bienen">🐝 Bienen</button>
+            <button class="filter-btn" data-filter="anlaesse">🎉 Anlässe</button>
+            <button class="filter-btn" data-filter="lehrbienenstand">🏡 Lehrbienenstand</button>
+            <button class="filter-btn" data-filter="kurse">🎓 Kurse</button>
+        </div>
+
+        <div class="gallery-grid" id="gallery-grid">
+
+            <!-- BIENEN -->
+            <div class="gallery-item" data-category="bienen"
+                 data-full="https://www.bienen-oberdiessbach.ch/uploads/images/Gallery/Bienen//DSC00019.JPG"
+                 data-caption="Biene auf Löwenzahn">
+                <img src="https://www.bienen-oberdiessbach.ch/uploads/images/Gallery/Bienen//thumb_DSC00019.JPG"
+                     alt="Biene auf Löwenzahn" loading="lazy">
+                <div class="gallery-overlay"><span class="gallery-overlay-text">🐝 Biene auf Löwenzahn</span></div>
+                <div class="gallery-expand">🔍</div>
+            </div>
+
+            <div class="gallery-item" data-category="bienen"
+                 data-full="https://www.bienen-oberdiessbach.ch/uploads/images/Gallery/Bienen//DSC00121.JPG"
+                 data-caption="Bienen auf Krokus">
+                <img src="https://www.bienen-oberdiessbach.ch/uploads/images/Gallery/Bienen//thumb_DSC00121.JPG"
+                     alt="Bienen auf Krokus" loading="lazy">
+                <div class="gallery-overlay"><span class="gallery-overlay-text">🌸 Bienen auf Krokus</span></div>
+                <div class="gallery-expand">🔍</div>
+            </div>
+
+            <div class="gallery-item" data-category="bienen"
+                 data-full="https://www.bienen-oberdiessbach.ch/uploads/images/Gallery/Bienen//DSC00155.JPG"
+                 data-caption="Biene">
+                <img src="https://www.bienen-oberdiessbach.ch/uploads/images/Gallery/Bienen//thumb_DSC00155.JPG"
+                     alt="Biene" loading="lazy">
+                <div class="gallery-overlay"><span class="gallery-overlay-text">🐝 Biene</span></div>
+                <div class="gallery-expand">🔍</div>
+            </div>
+
+            <div class="gallery-item" data-category="bienen"
+                 data-full="https://www.bienen-oberdiessbach.ch/uploads/images/Gallery/Bienen//DSC04124_cr.jpg"
+                 data-caption="Biene">
+                <img src="https://www.bienen-oberdiessbach.ch/uploads/images/Gallery/Bienen//thumb_DSC04124_cr.jpg"
+                     alt="Biene" loading="lazy">
+                <div class="gallery-overlay"><span class="gallery-overlay-text">🐝 Biene</span></div>
+                <div class="gallery-expand">🔍</div>
+            </div>
+
+            <div class="gallery-item" data-category="bienen"
+                 data-full="https://www.bienen-oberdiessbach.ch/uploads/images/Gallery/Bienen//DSC06262_cr.jpg"
+                 data-caption="Biene auf Blüte">
+                <img src="https://www.bienen-oberdiessbach.ch/uploads/images/Gallery/Bienen//thumb_DSC06262_cr.jpg"
+                     alt="Biene auf Blüte" loading="lazy">
+                <div class="gallery-overlay"><span class="gallery-overlay-text">🌼 Biene auf Blüte</span></div>
+                <div class="gallery-expand">🔍</div>
+            </div>
+
+            <div class="gallery-item" data-category="bienen"
+                 data-full="https://www.bienen-oberdiessbach.ch/uploads/images/Gallery/Bienen//DSC07171_cr.jpg"
+                 data-caption="Biene">
+                <img src="https://www.bienen-oberdiessbach.ch/uploads/images/Gallery/Bienen//thumb_DSC07171_cr.jpg"
+                     alt="Biene" loading="lazy">
+                <div class="gallery-overlay"><span class="gallery-overlay-text">🐝 Biene</span></div>
+                <div class="gallery-expand">🔍</div>
+            </div>
+
+            <div class="gallery-item" data-category="bienen"
+                 data-full="https://www.bienen-oberdiessbach.ch/uploads/images/Gallery/Bienen//DSC09640_cr.jpg"
+                 data-caption="Biene">
+                <img src="https://www.bienen-oberdiessbach.ch/uploads/images/Gallery/Bienen//thumb_DSC09640_cr.jpg"
+                     alt="Biene" loading="lazy">
+                <div class="gallery-overlay"><span class="gallery-overlay-text">🐝 Biene</span></div>
+                <div class="gallery-expand">🔍</div>
+            </div>
+
+            <div class="gallery-item" data-category="bienen"
+                 data-full="https://www.bienen-oberdiessbach.ch/uploads/images/Gallery/Bienen//DSC00282.JPG"
+                 data-caption="Bienenwabe">
+                <img src="https://www.bienen-oberdiessbach.ch/uploads/images/Gallery/Bienen//thumb_DSC00282.JPG"
+                     alt="Bienenwabe" loading="lazy">
+                <div class="gallery-overlay"><span class="gallery-overlay-text">🍯 Bienenwabe</span></div>
+                <div class="gallery-expand">🔍</div>
+            </div>
+
+            <!-- ANLÄSSE -->
+            <div class="gallery-item" data-category="anlaesse"
+                 data-full="https://www.bienen-oberdiessbach.ch/uploads/images/Gallery/Anlaesse/Berner-Bienentag-2014//Berner_Bienentag_2014_1.jpg"
+                 data-caption="Berner Bienentag 2014">
+                <img src="https://www.bienen-oberdiessbach.ch/uploads/images/Gallery/Anlaesse/Berner-Bienentag-2014//thumb_Berner_Bienentag_2014_1.jpg"
+                     alt="Berner Bienentag 2014" loading="lazy">
+                <div class="gallery-overlay"><span class="gallery-overlay-text">🎉 Berner Bienentag 2014</span></div>
+                <div class="gallery-expand">🔍</div>
+            </div>
+
+            <div class="gallery-item" data-category="anlaesse"
+                 data-full="https://www.bienen-oberdiessbach.ch/uploads/images/Gallery/Anlaesse/Berner-Bienentag-2014//Berner_Bienentag_2014_2.jpg"
+                 data-caption="Berner Bienentag 2014">
+                <img src="https://www.bienen-oberdiessbach.ch/uploads/images/Gallery/Anlaesse/Berner-Bienentag-2014//thumb_Berner_Bienentag_2014_2.jpg"
+                     alt="Berner Bienentag 2014" loading="lazy">
+                <div class="gallery-overlay"><span class="gallery-overlay-text">🎉 Berner Bienentag 2014</span></div>
+                <div class="gallery-expand">🔍</div>
+            </div>
+
+            <div class="gallery-item" data-category="anlaesse"
+                 data-full="https://www.bienen-oberdiessbach.ch/uploads/images/Gallery/Anlaesse/Berner-Bienentag-2014//Berner_Bienentag_2014_3.jpg"
+                 data-caption="Berner Bienentag 2014">
+                <img src="https://www.bienen-oberdiessbach.ch/uploads/images/Gallery/Anlaesse/Berner-Bienentag-2014//thumb_Berner_Bienentag_2014_3.jpg"
+                     alt="Berner Bienentag 2014" loading="lazy">
+                <div class="gallery-overlay"><span class="gallery-overlay-text">🎉 Berner Bienentag 2014</span></div>
+                <div class="gallery-expand">🔍</div>
+            </div>
+
+            <div class="gallery-item" data-category="anlaesse"
+                 data-full="https://www.bienen-oberdiessbach.ch/uploads/images/Gallery/Anlaesse/Berner-Bienentag-2014//Berner_Bienentag_2014_4.jpg"
+                 data-caption="Berner Bienentag 2014">
+                <img src="https://www.bienen-oberdiessbach.ch/uploads/images/Gallery/Anlaesse/Berner-Bienentag-2014//thumb_Berner_Bienentag_2014_4.jpg"
+                     alt="Berner Bienentag 2014" loading="lazy">
+                <div class="gallery-overlay"><span class="gallery-overlay-text">🎉 Berner Bienentag 2014</span></div>
+                <div class="gallery-expand">🔍</div>
+            </div>
+
+            <!-- LEHRBIENENSTAND -->
+            <div class="gallery-item" data-category="lehrbienenstand"
+                 data-full="https://www.bienen-oberdiessbach.ch/uploads/images/Gallery/Lehrbienenstand//DSC00057.JPG"
+                 data-caption="Imker am Lehrbienenstand">
+                <img src="https://www.bienen-oberdiessbach.ch/uploads/images/Gallery/Lehrbienenstand//thumb_DSC00057.JPG"
+                     alt="Imker am Lehrbienenstand" loading="lazy">
+                <div class="gallery-overlay"><span class="gallery-overlay-text">🧑‍🌾 Imker am Lehrbienenstand</span></div>
+                <div class="gallery-expand">🔍</div>
+            </div>
+
+            <div class="gallery-item" data-category="lehrbienenstand"
+                 data-full="https://www.bienen-oberdiessbach.ch/uploads/images/Gallery/Lehrbienenstand//DSC00060.JPG"
+                 data-caption="Lehrbienenstand Aussicht">
+                <img src="https://www.bienen-oberdiessbach.ch/uploads/images/Gallery/Lehrbienenstand//thumb_DSC00060.JPG"
+                     alt="Lehrbienenstand" loading="lazy">
+                <div class="gallery-overlay"><span class="gallery-overlay-text">🏡 Lehrbienenstand</span></div>
+                <div class="gallery-expand">🔍</div>
+            </div>
+
+            <div class="gallery-item" data-category="lehrbienenstand"
+                 data-full="https://www.bienen-oberdiessbach.ch/uploads/images/Gallery/Lehrbienenstand//DSC00485.JPG"
+                 data-caption="Bienenhaus">
+                <img src="https://www.bienen-oberdiessbach.ch/uploads/images/Gallery/Lehrbienenstand//thumb_DSC00485.JPG"
+                     alt="Bienenhaus" loading="lazy">
+                <div class="gallery-overlay"><span class="gallery-overlay-text">🏚 Bienenhaus</span></div>
+                <div class="gallery-expand">🔍</div>
+            </div>
+
+            <div class="gallery-item" data-category="lehrbienenstand"
+                 data-full="https://www.bienen-oberdiessbach.ch/uploads/images/Gallery/Lehrbienenstand//DSC00487.JPG"
+                 data-caption="Bienenstöcke">
+                <img src="https://www.bienen-oberdiessbach.ch/uploads/images/Gallery/Lehrbienenstand//thumb_DSC00487.JPG"
+                     alt="Bienenstöcke" loading="lazy">
+                <div class="gallery-overlay"><span class="gallery-overlay-text">🐝 Bienenstöcke</span></div>
+                <div class="gallery-expand">🔍</div>
+            </div>
+
+            <div class="gallery-item" data-category="lehrbienenstand"
+                 data-full="https://www.bienen-oberdiessbach.ch/uploads/images/Gallery/Lehrbienenstand//DSC00713.JPG"
+                 data-caption="Waben">
+                <img src="https://www.bienen-oberdiessbach.ch/uploads/images/Gallery/Lehrbienenstand//thumb_DSC00713.JPG"
+                     alt="Waben" loading="lazy">
+                <div class="gallery-overlay"><span class="gallery-overlay-text">🍯 Waben</span></div>
+                <div class="gallery-expand">🔍</div>
+            </div>
+
+            <div class="gallery-item" data-category="lehrbienenstand"
+                 data-full="https://www.bienen-oberdiessbach.ch/uploads/images/Gallery/Lehrbienenstand//DSC00871.JPG"
+                 data-caption="Waben Nahaufnahme">
+                <img src="https://www.bienen-oberdiessbach.ch/uploads/images/Gallery/Lehrbienenstand//thumb_DSC00871.JPG"
+                     alt="Waben Nahaufnahme" loading="lazy">
+                <div class="gallery-overlay"><span class="gallery-overlay-text">🍯 Waben</span></div>
+                <div class="gallery-expand">🔍</div>
+            </div>
+
+            <!-- KURSE – Platzhalter für eigene Bilder -->
+            <!--
+            <div class="gallery-item" data-category="kurse"
+                 data-full="images/galerie/kurse/bild-1.jpg"
+                 data-caption="Grundkurs Imkerei">
+                <img src="images/galerie/kurse/bild-1.jpg" alt="Grundkurs Imkerei" loading="lazy">
+                <div class="gallery-overlay"><span class="gallery-overlay-text">🎓 Grundkurs Imkerei</span></div>
+                <div class="gallery-expand">🔍</div>
+            </div>
+            -->
+
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     KONTAKT
+============================================================ -->
+<section id="kontakt">
+    <div class="container">
+        <h2 class="section-title fade-in">Kontakt</h2>
+        <p class="section-subtitle fade-in" style="color:var(--stone-500)">So erreichen Sie uns</p>
+
+        <div class="kontakt-grid">
+
+            <div class="kontakt-info fade-in">
+                <h3>Bienenzüchterverein<br>Oberdiessbach und Umgebung</h3>
+                <p>Wir freuen uns über Ihre Nachricht – ob Mitgliedschaftsanfrage, Kursbuchung oder allgemeine Fragen.</p>
+
+                <div class="contact-items">
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <div>
+                            <div class="contact-label">Adresse</div>
+                            <div class="contact-value">
+                                Walter Lüthi<br>
+                                Mittlere Hauben 142<br>
+                                3672 Oberdiessbach
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">✉️</div>
+                        <div>
+                            <div class="contact-label">E-Mail Verein</div>
+                            <div class="contact-value">
+                                <a href="mailto:info@bienen-oberdiessbach.ch">info@bienen-oberdiessbach.ch</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">📞</div>
+                        <div>
+                            <div class="contact-label">Telefon Präsident</div>
+                            <div class="contact-value">
+                                <a href="tel:0794650620">079 465 06 20</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">✉️</div>
+                        <div>
+                            <div class="contact-label">E-Mail Präsident</div>
+                            <div class="contact-value">
+                                <a href="mailto:wabe.luethi@bluewin.ch">wabe.luethi@bluewin.ch</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">🌐</div>
+                        <div>
+                            <div class="contact-label">Sektion</div>
+                            <div class="contact-value">
+                                <a href="https://www.bienen.ch" target="_blank">Bienen.ch – Sektion Oberdiessbach (206)</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="kontakt-bank fade-in">
+                <h3>🏦 Bankverbindung</h3>
+                <div class="bank-row">
+                    <span class="bank-label">Kontoinhaber</span>
+                    <span class="bank-value">BZO Oberdiessbach</span>
+                </div>
+                <div class="bank-row">
+                    <span class="bank-label">IBAN</span>
+                    <span class="bank-value">CH27 0900 0000 3400 3771 9</span>
+                </div>
+                <div class="bank-row">
+                    <span class="bank-label">Konto</span>
+                    <span class="bank-value">34-3771-9</span>
+                </div>
+
+                <div style="margin-top:2rem; padding-top:1.5rem; border-top:1px solid rgba(255,255,255,0.08);">
+                    <h3>🎓 Kurse & Gerätevermietung</h3>
+                    <div class="bank-row">
+                        <span class="bank-label">Kursleiterin</span>
+                        <span class="bank-value">Rosmarie Stucki</span>
+                    </div>
+                    <div class="bank-row">
+                        <span class="bank-label">E-Mail</span>
+                        <span class="bank-value" style="color:var(--amber)">
+                            <a href="mailto:rosmarie.stucki@gmx.ch" style="color:var(--amber)">rosmarie.stucki@gmx.ch</a>
+                        </span>
+                    </div>
+                    <div class="bank-row">
+                        <span class="bank-label">Telefon</span>
+                        <span class="bank-value">
+                            <a href="tel:0793206085" style="color:var(--amber)">079 320 60 85</a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     FOOTER
+============================================================ -->
+<footer>
+    <div class="footer-inner">
+        <div class="footer-logo">BZO</div>
+        <p>
+            © 2025 Bienenzüchterverein Oberdiessbach und Umgebung<br>
+            <a href="https://www.bienen-oberdiessbach.ch/index.php?page=impressum" target="_blank">Impressum</a>
+        </p>
+        <p style="font-size:0.78rem; color:#4a4641">
+            Webseite neu gestaltet 2025 &nbsp;·&nbsp; Alle Inhalte © BZO
+        </p>
+    </div>
+</footer>
+
+<!-- ============================================================
+     LIGHTBOX
+============================================================ -->
+<div id="lightbox">
+    <button class="lightbox-close" id="lightbox-close">✕</button>
+    <button class="lightbox-nav lightbox-prev" id="lightbox-prev">‹</button>
+    <img id="lightbox-img" src="" alt="">
+    <button class="lightbox-nav lightbox-next" id="lightbox-next">›</button>
+    <div class="lightbox-caption" id="lightbox-caption"></div>
+</div>
+
+<!-- Back to top -->
+<button id="back-top" aria-label="Nach oben">↑</button>
+
+<!-- ============================================================
+     JAVASCRIPT
+============================================================ -->
+<script>
+// ── Hamburger / Mobile Menu ──────────────────────────────────
+const hamburger   = document.getElementById('hamburger');
+const mobileMenu  = document.getElementById('mobile-menu');
+
+hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+});
+
+// Close mobile menu on link click
+mobileMenu.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        mobileMenu.classList.remove('open');
+    });
+});
+
+// ── Nav scroll effect ────────────────────────────────────────
+const mainNav = document.getElementById('main-nav');
+window.addEventListener('scroll', () => {
+    mainNav.classList.toggle('scrolled', window.scrollY > 60);
+});
+
+// ── Scroll-triggered fade-in ─────────────────────────────────
+const fadeEls = document.querySelectorAll('.fade-in');
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+            // stagger within parent
+            const siblings = Array.from(e.target.parentElement.querySelectorAll('.fade-in'));
+            const idx = siblings.indexOf(e.target);
+            setTimeout(() => {
+                e.target.classList.add('visible');
+            }, Math.min(idx * 90, 400));
+            observer.unobserve(e.target);
+        }
+    });
+}, { threshold: 0.12 });
+
+fadeEls.forEach(el => observer.observe(el));
+
+// ── Gallery Filter ───────────────────────────────────────────
+const filterBtns  = document.querySelectorAll('.filter-btn');
+const galleryItems = document.querySelectorAll('.gallery-item');
+
+filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const filter = btn.dataset.filter;
+        galleryItems.forEach(item => {
+            if (filter === 'all' || item.dataset.category === filter) {
+                item.classList.remove('hidden');
+            } else {
+                item.classList.add('hidden');
+            }
+        });
+    });
+});
+
+// ── Lightbox ─────────────────────────────────────────────────
+const lightbox     = document.getElementById('lightbox');
+const lightboxImg  = document.getElementById('lightbox-img');
+const lightboxCap  = document.getElementById('lightbox-caption');
+const lightboxClose = document.getElementById('lightbox-close');
+const lightboxPrev = document.getElementById('lightbox-prev');
+const lightboxNext = document.getElementById('lightbox-next');
+
+let currentItems = [];
+let currentIndex = 0;
+
+function getVisibleItems() {
+    return Array.from(galleryItems).filter(el => !el.classList.contains('hidden'));
+}
+
+function openLightbox(index) {
+    currentItems = getVisibleItems();
+    currentIndex = index;
+    showLightboxItem();
+    lightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
+}
+
+function showLightboxItem() {
+    const item = currentItems[currentIndex];
+    lightboxImg.src = item.dataset.full || item.querySelector('img').src;
+    lightboxImg.alt = item.dataset.caption || '';
+    lightboxCap.textContent = `${item.dataset.caption || ''} (${currentIndex + 1} / ${currentItems.length})`;
+}
+
+function closeLightbox() {
+    lightbox.classList.remove('open');
+    document.body.style.overflow = '';
+    lightboxImg.src = '';
+}
+
+galleryItems.forEach((item) => {
+    item.addEventListener('click', () => {
+        const visible = getVisibleItems();
+        const idx = visible.indexOf(item);
+        if (idx >= 0) openLightbox(idx);
+    });
+});
+
+lightboxClose.addEventListener('click', closeLightbox);
+lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+
+lightboxPrev.addEventListener('click', (e) => {
+    e.stopPropagation();
+    currentIndex = (currentIndex - 1 + currentItems.length) % currentItems.length;
+    showLightboxItem();
+});
+
+lightboxNext.addEventListener('click', (e) => {
+    e.stopPropagation();
+    currentIndex = (currentIndex + 1) % currentItems.length;
+    showLightboxItem();
+});
+
+document.addEventListener('keydown', (e) => {
+    if (!lightbox.classList.contains('open')) return;
+    if (e.key === 'Escape')      closeLightbox();
+    if (e.key === 'ArrowLeft')   { currentIndex = (currentIndex - 1 + currentItems.length) % currentItems.length; showLightboxItem(); }
+    if (e.key === 'ArrowRight')  { currentIndex = (currentIndex + 1) % currentItems.length; showLightboxItem(); }
+});
+
+// ── Back to top ───────────────────────────────────────────────
+const backTop = document.getElementById('back-top');
+window.addEventListener('scroll', () => {
+    backTop.classList.toggle('visible', window.scrollY > 500);
+});
+backTop.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+// ── Smooth scroll for anchors ────────────────────────────────
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', (e) => {
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) {
+            e.preventDefault();
+            const offset = 70;
+            const top = target.getBoundingClientRect().top + window.scrollY - offset;
+            window.scrollTo({ top, behavior: 'smooth' });
+        }
+    });
+});
+</script>
+
+</body>
+</html>

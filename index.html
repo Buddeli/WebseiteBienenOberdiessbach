@@ -255,15 +255,13 @@
         .nav-links { display: none; }
         .hamburger { display: flex; }
 
-        /* Hero: auf Mobile nicht vertikal zentrieren, sondern von oben positionieren.
-           Das verhindert, dass der Inhalt zu nah an den Nav-Bereich gedrückt wird. */
+        /* Hero: auf Mobile padding-top für Navbar setzen, Inhalt bleibt zentriert */
         #hero {
-            align-items: flex-start;
             padding-top: 68px; /* Höhe der fixen Navbar */
         }
 
         .hero-content {
-            padding-top: 2.5rem;   /* statt 8rem – der Hero hat schon padding-top: 68px */
+            padding-top: 1rem;
             padding-bottom: 7rem;  /* Platz für die absolute positionierte Stats-Leiste */
             width: 100%;
         }
